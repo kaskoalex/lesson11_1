@@ -35,19 +35,18 @@ btnCircle.onclick = function () {
 
 //при каждом изменении положения ползунка значение input[type = range] необходимо заносить в свойства ширины и высоты кружка(который внутри квадрата)(height и width)(в процентах!!) 
 
-const inputRange = document.querySelector('#text')
-let circle = document.getElementById('circle');
-let width = parseInt(getComputedStyle(circle).getPropertyValue('width'));
-let height = parseInt(getComputedStyle(circle).getPropertyValue('height'));
-let prozent = 1.01
+const inputRange = document.querySelector('input[type = range]')
+const circle = document.getElementById('circle');
+const spanRange = document.getElementById('range-span');
+
+range.value = circle.offsetWidth * 100 / square.offsetWidth;
+spanRange.textContent = range.value + '%';
 
 const inputEvent = function (event) {
   
-  width *= prozent
-  height *= prozent
-  circle.style.width = width + 'px';
-  circle.style.height = height + 'px';
-  console.log(circle.style.width)
-
+  const percent = event.target.value + '%';
+  circle.style.width = percent;
+  circle.style.height = percent;
+  
 }
 inputRange.addEventListener('input', inputEvent);
